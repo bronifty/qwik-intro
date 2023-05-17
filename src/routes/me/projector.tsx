@@ -1,20 +1,23 @@
-import { Slot, component$ } from "@builder.io/qwik";
+import { Slot, component$, useContext } from "@builder.io/qwik";
+import { colorContextId, messageContextId } from "~/utils/store";
 
-export interface ProjectorProps {
-  message: string;
-  color: string;
-}
+// export interface ProjectorProps {
+//   message: string;
+//   color: string;
+// }
 
-export const Projector = component$<ProjectorProps>((props) => {
-  const { message, color } = props;
+export const Projector = component$(() => {
+  // const { message, color } = props;
+  const message = useContext(messageContextId);
+  const color = useContext(colorContextId);
   return (
     <>
       <h1>Projector</h1>
-
-      <div style={{ color }}>
+      <div>
+        {/* <div style={{ color.value }}>
         Outside span just do demo using style with double and single braces{" "}
-        {"  "}
-        <span style={"color:" + color}>{message}</span>
+        {"  "} */}
+        <span style={"color:" + color.value}>{message.value}</span>
       </div>
 
       <Slot />

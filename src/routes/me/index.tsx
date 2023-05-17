@@ -1,19 +1,20 @@
 import { Signal, useContext, useContextProvider } from "@builder.io/qwik";
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { Projector } from "~/routes/me/projector";
-import { beerContextId } from "~/utils/store";
+import { beerContextId, messageContextId, colorContextId } from "~/utils/store";
 
 export default component$(() => {
   const messageSignal = useSignal("");
+  const colorSignal = useSignal("blue");
   const testBoolSignal = useSignal(false);
   const isMiskoVisibleSignal = useSignal(false);
   const didHeGetABeerSignal = useSignal(false);
-  const colorSignal = useSignal("blue");
-
   // useContext
   // useContextProvider
 
   useContextProvider(beerContextId, didHeGetABeerSignal);
+  useContextProvider(messageContextId, messageSignal);
+  useContextProvider(colorContextId, colorSignal);
 
   useTask$(({ track }) => {
     track(() => didHeGetABeerSignal.value);
@@ -54,11 +55,7 @@ export default component$(() => {
         Show projector
       </button>
 
-      {testBoolSignal.value && (
-        <Projector message={messageSignal.value} color={colorSignal.value}>
-          hi hi{" "}
-        </Projector>
-      )}
+      {testBoolSignal.value && <Projector>hi hi </Projector>}
     </>
   );
 });

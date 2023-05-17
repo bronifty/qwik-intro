@@ -1,5 +1,9 @@
 import { Slot, component$, useContext } from "@builder.io/qwik";
-import { colorContextId, messageContextId } from "~/utils/store";
+import {
+  colorContextId,
+  messageContextId,
+  projectorContextId,
+} from "~/utils/store";
 
 // export interface ProjectorProps {
 //   message: string;
@@ -8,8 +12,10 @@ import { colorContextId, messageContextId } from "~/utils/store";
 
 export const Projector = component$(() => {
   // const { message, color } = props;
-  const message = useContext(messageContextId);
-  const color = useContext(colorContextId);
+  // const message = useContext(messageContextId);
+  // const color = useContext(colorContextId);
+  const { messageSignal: message, colorSignal: color } =
+    useContext(projectorContextId);
   return (
     <>
       <h1>Projector</h1>

@@ -1,7 +1,12 @@
 import { Signal, useContext, useContextProvider } from "@builder.io/qwik";
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { Projector } from "~/routes/me/projector";
-import { beerContextId, messageContextId, colorContextId } from "~/utils/store";
+import {
+  beerContextId,
+  messageContextId,
+  colorContextId,
+  projectorContextId,
+} from "~/utils/store";
 
 export default component$(() => {
   const messageSignal = useSignal("");
@@ -13,8 +18,12 @@ export default component$(() => {
   // useContextProvider
 
   useContextProvider(beerContextId, didHeGetABeerSignal);
-  useContextProvider(messageContextId, messageSignal);
-  useContextProvider(colorContextId, colorSignal);
+  useContextProvider(projectorContextId, {
+    messageSignal,
+    colorSignal,
+  });
+  // useContextProvider(messageContextId, messageSignal);
+  // useContextProvider(colorContextId, colorSignal);
 
   useTask$(({ track }) => {
     track(() => didHeGetABeerSignal.value);

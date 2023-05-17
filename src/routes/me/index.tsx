@@ -1,5 +1,7 @@
-import { Signal, component$, useSignal, useTask$ } from "@builder.io/qwik";
+import { Signal, useContext, useContextProvider } from "@builder.io/qwik";
+import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { Projector } from "~/routes/me/projector";
+import { beerContextId } from "~/utils/store";
 
 export default component$(() => {
   const messageSignal = useSignal("");
@@ -7,6 +9,11 @@ export default component$(() => {
   const isMiskoVisibleSignal = useSignal(false);
   const didHeGetABeerSignal = useSignal(false);
   const colorSignal = useSignal("blue");
+
+  // useContext
+  // useContextProvider
+
+  useContextProvider(beerContextId, didHeGetABeerSignal);
 
   useTask$(({ track }) => {
     track(() => didHeGetABeerSignal.value);
@@ -22,7 +29,8 @@ export default component$(() => {
 
   return (
     <>
-      <BeerGiver gotBeerSignal={didHeGetABeerSignal} />
+      <BeerGiver />
+      {/* <BeerGiver gotBeerSignal={didHeGetABeerSignal} /> */}
       <div>
         {isMiskoVisibleSignal.value && (
           <div>
@@ -55,12 +63,13 @@ export default component$(() => {
   );
 });
 
-interface BeerGiverProps {
-  gotBeerSignal: Signal<boolean>;
-}
+// interface BeerGiverProps {
+//   gotBeerSignal: Signal<boolean>;
+// }
 
-export const BeerGiver = component$((props: BeerGiverProps) => {
-  const { gotBeerSignal } = props;
+export const BeerGiver = component$(() => {
+  // const { gotBeerSignal } = props;
+  const gotBeerSignal = useContext(beerContextId);
   return (
     <>
       <button onClick$={() => (gotBeerSignal.value = !gotBeerSignal.value)}>

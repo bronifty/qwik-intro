@@ -11,7 +11,11 @@ export const Projector = component$<ProjectorProps>((props) => {
     <>
       <h1>Projector</h1>
 
-      <div style={{ color }}>{message}</div>
+      <div style={{ color }}>
+        Outside span just do demo using style with double and single braces{" "}
+        {"  "}
+        <span style={"color:" + color}>{message}</span>
+      </div>
 
       <Slot />
     </>

@@ -15,7 +15,7 @@ export default component$(() => {
 
   useTask$(({ track }) => {
     track(() => messageSignal.value);
-    messageSignal.value === "llama"
+    messageSignal.value.indexOf("llama") !== -1
       ? (colorSignal.value = "red")
       : (colorSignal.value = "blue");
   });

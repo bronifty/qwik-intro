@@ -1,6 +1,7 @@
 // import type { Signal } from "@builder.io/qwik";
 import { useContext, useContextProvider } from "@builder.io/qwik";
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
+import { BeerSelector } from "~/routes/me/beer-selector";
 import { Projector } from "~/routes/me/projector";
 import { beerContextId, projectorContextId } from "~/utils/store";
 
@@ -37,13 +38,7 @@ export default component$(() => {
     <>
       <BeerGiver />
       {/* <BeerGiver gotBeerSignal={didHeGetABeerSignal} /> */}
-      <div>
-        {isMiskoVisibleSignal.value && (
-          <div>
-            <h1>Misko</h1>
-          </div>
-        )}
-      </div>
+      <div>{isMiskoVisibleSignal.value && <MiskoComponent />}</div>
 
       <input
         type="text"
@@ -80,10 +75,11 @@ export const BeerGiver = component$(() => {
     </>
   );
 });
-// export const Misko = component$(({ messageSignal }) => {
-//   return (
-//     <>
-//       <h1>{iptVal.value}</h1>
-//     </>
-//   );
-// });
+export const MiskoComponent = component$(() => {
+  return (
+    <div>
+      <h1>Misko</h1>
+      <BeerSelector />
+    </div>
+  );
+});

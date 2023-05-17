@@ -1,12 +1,8 @@
-import { Signal, useContext, useContextProvider } from "@builder.io/qwik";
+// import type { Signal } from "@builder.io/qwik";
+import { useContext, useContextProvider } from "@builder.io/qwik";
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { Projector } from "~/routes/me/projector";
-import {
-  beerContextId,
-  messageContextId,
-  colorContextId,
-  projectorContextId,
-} from "~/utils/store";
+import { beerContextId, projectorContextId } from "~/utils/store";
 
 export default component$(() => {
   const messageSignal = useSignal("");

@@ -1,9 +1,5 @@
 import { Slot, component$, useContext } from "@builder.io/qwik";
-import {
-  colorContextId,
-  messageContextId,
-  projectorContextId,
-} from "~/utils/store";
+import { projectorContextId } from "~/utils/store";
 
 // export interface ProjectorProps {
 //   message: string;

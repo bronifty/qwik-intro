@@ -55,7 +55,11 @@ export default component$(() => {
         Show projector
       </button>
 
-      {testBoolSignal.value && <Projector>hi hi </Projector>}
+      {testBoolSignal.value && (
+        <Projector>
+          <span class="text-red-500">yes hello this is dog</span>{" "}
+        </Projector>
+      )}
     </>
   );
 });

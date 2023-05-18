@@ -2,7 +2,7 @@ import {
   Resource,
   component$,
   useResource$,
-  useStyles$,
+  useStylesScoped$,
 } from "@builder.io/qwik";
 import styles from "./beer-selector.css?inline";
 
@@ -11,7 +11,7 @@ export interface Beer {
 }
 
 export const BeerSelector = component$(() => {
-  useStyles$(styles);
+  useStylesScoped$(styles);
 
   // const beers: Beer[] = [{ name: "IPA" }, { name: "Lager" }];
   const beersResource = useResource$<Beer[]>(async () => {
